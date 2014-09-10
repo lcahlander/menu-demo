@@ -23,39 +23,26 @@ declare function app:test($node as node(), $model as map(*)) {
 };
 
 declare function app:page-setup($node as node(), $model as map(*)) as map(*) {
- map { 
-            'page-title' := 'Foo',
-(:        'meta' := (<meta http-equiv="refresh" content="30"/>),
-:)        'page-menu' := (
+ map {  'page-menu' := (
                         <menu>
                             <name>Home</name>
-                            <menu-item>
-                                <name>Home</name>
-                                <url>index.html</url>
-                            </menu-item>
-                            <menu-item>
-                                <name>Two</name>
-                                <url>two.html</url>
-                            </menu-item>
+                            <menu-item><name>Home</name><url>index.html</url></menu-item>
+                            <menu-item><name>Two</name><url>two.html</url></menu-item>
                         </menu>,
-                        <menu-item>
-                            <name>Admin</name>
-                            <url>index.html</url>
-                        </menu-item>,
+                        <menu-item><name>Admin</name><url>index.html</url></menu-item>,
                         <menu>
                             <name>Tertiary</name>
-                            <menu-item>
-                                <name>Home</name>
-                                <url>index.html</url>
-                            </menu-item>
+                            <menu-item><name>Home</name><url>index.html</url></menu-item>
+                            <divider/>
+                            <menu-item><name>Two</name><url>two.html</url></menu-item>
+                            <menu>
+                                <name>SubMenu</name>
+                                <menu-item><name>Home</name><url>index.html</url></menu-item>
                                 <divider/>
-                            <menu-item>
-                                <name>Two</name>
-                                <url>two.html</url>
-                            </menu-item>
+                                <menu-item><name>Two</name><url>two.html</url></menu-item>
+                            </menu>
                         </menu>
-                        ) 
-    }
+                        )  }
 };
 
 declare function app:page-meta($node as node(), $model as map(*)) {
