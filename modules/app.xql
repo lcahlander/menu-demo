@@ -4,6 +4,7 @@ module namespace app="http://exist-db.org/apps/menu-demo/templates";
 
 import module namespace templates="http://exist-db.org/xquery/templates" ;
 import module namespace config="http://exist-db.org/apps/menu-demo/config" at "config.xqm";
+import module namespace console="http://exist-db.org/xquery/console";
 
 declare namespace expath="http://expath.org/ns/pkg";
 
@@ -22,7 +23,8 @@ declare function app:test($node as node(), $model as map(*)) {
 };
 
 declare function app:page-setup($node as node(), $model as map(*)) as map(*) {
- map { 'page-title' := 'Foo',
+ map { 
+            'page-title' := 'Foo',
 (:        'meta' := (<meta http-equiv="refresh" content="30"/>),
 :)        'page-menu' := (
                         <menu>
@@ -46,12 +48,14 @@ declare function app:page-setup($node as node(), $model as map(*)) as map(*) {
                                 <name>Home</name>
                                 <url>index.html</url>
                             </menu-item>
+                                <divider/>
                             <menu-item>
                                 <name>Two</name>
                                 <url>two.html</url>
                             </menu-item>
                         </menu>
-                        ) }
+                        ) 
+    }
 };
 
 declare function app:page-meta($node as node(), $model as map(*)) {
@@ -75,10 +79,10 @@ declare function app:each($node as node(), $model as map(*), $from as xs:string,
 
 
 declare function app:model-name-switch($node as node(), $model as map(*), $key as xs:string?, $list as xs:string?) {
-    let $value := $model($key)/name()
+    let $value := $model($key)
     let $seq := fn:tokenize($list, ',')
-    let $pos := fn:index-of($seq, $value)
-    return if (fn:empty($pos)) then $value else templates:process($node/node()[$pos], $model)
+    let $pos := fn:index-of($seq, $value/local-name())
+    return if (fn:empty($pos)) then $value/local-name() else templates:process($node/node()[$pos], $model)
 };
 
 
@@ -91,7 +95,7 @@ declare %templates:wrap function app:menu-link($node as node(), $model as map(*)
 };
 
 declare function app:menu-setup($node as node(), $model as map(*)) as map(*) {
-    map { 'menu-items' := $model('menu')/menu-item }
+    map { 'menu-items' := $model('menu')/(menu|menu-item|divider) }
 };
 
 declare %templates:wrap function app:page-title($node as node(), $model as map(*))  {

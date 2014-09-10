@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<div data-template="app:menu-setup">
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-template="app:menu-name">Home</a>
+        <ul class="dropdown-menu">
+            <li data-template="app:each" data-template-from="menu-items" data-template-to="menu" data-template-nowrap="true">
+                <div data-template="templates:include" data-template-path="templates/menu-switch.html"/>
+            </li>
+        </ul>
+    </li>
+</div>
