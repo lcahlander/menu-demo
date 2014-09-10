@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<meta xmlns="http://exist-db.org/xquery/repo">
+    <description>Templating Demonstration of Menus</description>
+    <author/>
+    <website/>
+    <status>alpha</status>
+    <license>GNU-LGPL</license>
+    <copyright>true</copyright>
+    <type>application</type>
+    <target>menu-demo</target>
+    <prepare>pre-install.xql</prepare>
+    <finish/>
+    <deployed>2014-09-09T16:53:49.104-04:00</deployed>
+</meta>
